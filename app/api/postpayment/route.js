@@ -38,7 +38,7 @@ export async function POST(req) {
         });
         let date = new Date().toDateString()
 
-        const sendMail = (payMeth, message) => {
+        const sendMail = async (payMeth, message) => {
             const emailContent =
                 `
 Dear ${name},
@@ -111,11 +111,16 @@ Customer Support Representative
             }
 
 
-            transporter.sendMail(mailOptions, function (err, info) {
-                if (err) {
-                    console.log(err);
-                }
-            });
+            await new Promise((resolve, reject) => {
+                transporter.sendMail(mailOptions, (err, info) => {
+                  if (err) {
+                    console.error(err);
+                    reject(err);
+                  } else {
+                    resolve(info);
+                  }
+                });
+              });
 
         }
         const shasum = crypto.createHmac("sha256", process.env.RAZORPAY_SECRET);

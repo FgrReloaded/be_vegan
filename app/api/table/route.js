@@ -26,7 +26,7 @@ export async function POST(req) {
             phone: data.phone,
             message: data.msg
         }
-        const sendMail = (tableNo, resDate, resTime) => {
+        const sendMail = async (tableNo, resDate, resTime) => {
             const emailContent = `
 Hello ${data.fullname},
 
@@ -51,11 +51,16 @@ BE Vegan
                 text: emailContent
             }
 
-            transporter.sendMail(mailOptions, function (err, info) {
-                if (err) {
-                    console.log(err);
-                } 
-            });
+            await new Promise((resolve, reject) => {
+                transporter.sendMail(mailOptions, (err, info) => {
+                  if (err) {
+                    console.error(err);
+                    reject(err);
+                  } else {
+                    resolve(info);
+                  }
+                });
+              });
 
         }
         let tab = await Table.find()
