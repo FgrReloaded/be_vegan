@@ -51,8 +51,8 @@ BE Vegan
                 text: emailContent
             }
 
-            await new Promise((resolve, reject) => {
-                transporter.sendMail(mailOptions, (err, info) => {
+            
+             await transporter.sendMail(mailOptions, (err, info) => {
                   if (err) {
                     console.error(err);
                     reject(err);
@@ -60,7 +60,7 @@ BE Vegan
                     resolve(info);
                   }
                 });
-              });
+            
 
         }
         let tab = await Table.find()
