@@ -9,10 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "crypto": "^1.0.1",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
+    "framer-motion": "^10.12.16",
+    "mongoose": "^7.3.1",
     "next": "13.4.7",
+    "nodemailer": "^6.9.3",
+    "razorpay": "^2.8.6",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-confetti": "^6.1.0",
+    "react-countup": "^6.4.2",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.10.1",
+    "react-owl-carousel": "^2.3.3",
+    "shortid": "^2.2.16",
+    "swiper": "^9.4.1"
   }
 }
