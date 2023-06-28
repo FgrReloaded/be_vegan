@@ -111,8 +111,7 @@ Customer Support Representative
             }
 
 
-            await new Promise((resolve, reject) => {
-                transporter.sendMail(mailOptions, (err, info) => {
+                await transporter.sendMail(mailOptions, (err, info) => {
                   if (err) {
                     console.error(err);
                     reject(err);
@@ -120,7 +119,6 @@ Customer Support Representative
                     resolve(info);
                   }
                 });
-              });
 
         }
         const shasum = crypto.createHmac("sha256", process.env.RAZORPAY_SECRET);

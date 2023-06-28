@@ -31,12 +31,14 @@ const Coffee = () => {
     }
     setLoaded(false)
     fetchData()
-    setTimeout(() => {
-      setLoaded(true)
-    }, 1000);
+    setLoaded(true)
   }, [])
   const newProduct = async (e, product) => {
+    e.target.children[0].children[0].classList.remove("hide")
+    e.target.children[0].children[1].classList.add("hide")
     let data = await createCart(user, product)
+    e.target.children[0].children[0].classList.add("hide")
+    e.target.children[0].children[1].classList.remove("hide")
     if (data.success) {
       if (!e.target.classList.contains("loading")) {
         e.target.classList.add("loading");
@@ -50,9 +52,9 @@ const Coffee = () => {
         {loaded ?
           <div className="row">
             {starter.map(item => {
-              return <motion.div initial={{y:-50, opacity:0}} animate={{y:0, opacity:1}} transition={{duration:0.4, ease:"easeInOut"}} key={item.slug} className="col-md-3">
+              return <motion.div initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.4, ease: "easeInOut" }} key={item.slug} className="col-md-3">
                 <div className="menu-entry">
-                  <a href="#" className="img" style={{ backgroundImage: `url(${item.image})` }}></a>
+                  <a className="img" style={{ backgroundImage: `url(${item.image})` }}></a>
                   <div className="text text-center pt-4">
                     <h3 style={font_36.style}><Link className='foodTitle' href={`/food/${item.slug}`} >{item.name}</Link></h3>
                     <p style={ysabeau.style}>{item.desc}</p>
@@ -60,8 +62,10 @@ const Coffee = () => {
                     <button style={ysabeau.style} onClick={(e) => {
                       newProduct(e, { foods: { name: item.name, slug: item.slug, category: item.category, image: item.image, price: item.price[0], qty: 1 } });
                     }} className="button btn btn-primary btn-outline-primary">
-                      <span>Add To Cart</span>
-                      <div className="cart">
+                      <span>
+                        <div className="lds-dual-ring hide"></div>
+                        <div>Add To Cart</div>
+                      </span>                      <div className="cart">
                         <svg viewBox="0 0 36 26">
                           <polyline
                             points="1 2.5 6 2.5 10 18.5 25.5 18.5 28.5 7.5 7.5 7.5"

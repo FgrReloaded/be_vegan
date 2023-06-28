@@ -10,6 +10,8 @@ const josefin = Josefin_Sans({ subsets: ["latin"] })
 
 const MainDish = () => {
     const [loaded, setLoaded] = useState(false)
+    const [loading, setLoading] = useState(false)
+    const [load, setLoad] = useState("Add To Cart")
     const [user, setUser] = useState("")
     const context = useContext(beVeganContext);
     const { createCart, token } = context;
@@ -30,12 +32,14 @@ const MainDish = () => {
         }
         setLoaded(false)
         fetchData()
-        setTimeout(() => {
-            setLoaded(true)
-        }, 1000);
+        setLoaded(true)
     }, [])
     const newProduct = async (e, product) => {
+        e.target.children[0].children[0].classList.remove("hide")
+        e.target.children[0].children[1].classList.add("hide")
         let data = await createCart(user, product)
+        e.target.children[0].children[0].classList.add("hide")
+        e.target.children[0].children[1].classList.remove("hide")
         if (data.success) {
             if (!e.target.classList.contains("loading")) {
                 e.target.classList.add("loading");
@@ -50,17 +54,20 @@ const MainDish = () => {
                 {loaded ?
                     <div className="row">
                         {mainDish.map(item => {
-                            return <motion.div initial={{y:-50, opacity:0}} animate={{y:0, opacity:1}} transition={{duration:0.4, ease:"easeInOut"}} key={item.slug} className="col-md-3 text-center">
+                            return <motion.div initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.4, ease: "easeInOut" }} key={item.slug} className="col-md-3 text-center">
                                 <div className="menu-entry">
-                                    <a href="#" className="img mb-4" style={{ backgroundImage: `url(${item.image})` }}></a>
+                                    <a className="img mb-4" style={{ backgroundImage: `url(${item.image})` }}></a>
                                     <div className="text">
                                         <h3 style={font_36.style}><Link className='foodTitle' href={`/food/${item.slug}`}>{item.name}</Link></h3>
                                         <p style={ysabeau.style}>{item.desc}</p>
                                         <p style={josefin.style} className="price"><span>₹{item.price[0].small}</span></p>
                                         <button style={ysabeau.style} onClick={(e) => {
                                             newProduct(e, { foods: { name: item.name, slug: item.slug, category: item.category, image: item.image, price: item.price[0], qty: 1 } });
-                                        }} className="button btn btn-primary btn-outline-primary">
-                                            <span>Add To Cart</span>
+                                        }} className="button btn btn-primary btn-outline-primary addtocart">
+                                            <span>
+                                                <div className="lds-dual-ring hide"></div>
+                                                <div>Add To Cart</div>
+                                            </span>
                                             <div className="cart">
                                                 <svg viewBox="0 0 36 26">
                                                     <polyline

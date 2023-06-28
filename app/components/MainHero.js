@@ -3,6 +3,7 @@ import { motion } from "framer-motion"
 import localFont from 'next/font/local'
 const font_16 = localFont({src: "../fonts/16.ttf"})
 import {Ysabeau} from "next/font/google"
+import Link from 'next/link'
 const ysabeau = Ysabeau({subsets: ["latin"]})
 
 
@@ -18,7 +19,7 @@ const MainHero = ({ tagline, tag }) => {
                             <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }}
                                 transition={{ ease: "easeInOut", duration: 0.4 }} className="col-md-7 col-sm-12 text-center">
                                 <h1 style={font_16.style} className="mb-3 mt-5 font-tag bread">{tagline}</h1>
-                                <p className="breadcrumbs" style={ysabeau.style}><span className="mr-2"><a href="index.html">Home</a></span> <span>{tag}</span></p>
+                                <p className="breadcrumbs" style={ysabeau.style}><span className="mr-2"><Link href={"/"}>Home</Link></span> <span>{tag}</span></p>
                             </motion.div>
                         </div>
                     </div>

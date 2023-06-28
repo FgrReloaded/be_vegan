@@ -51,7 +51,11 @@ const Home = () => {
     setLoaded(true)
   }, [])
   const newProduct = async (e, product) => {
+    e.target.children[0].children[0].classList.remove("hide")
+    e.target.children[0].children[1].classList.add("hide")
     let data = await createCart(user, product)
+    e.target.children[0].children[0].classList.add("hide")
+    e.target.children[0].children[1].classList.remove("hide")
     if (data.success) {
       if (!e.target.classList.contains("loading")) {
         e.target.classList.add("loading");
@@ -75,11 +79,11 @@ const Home = () => {
                   <div className="block-18 text-center">
                     <div className="text">
                       <div className="icon"><PiCoffeeThin style={{ fontWeight: "400 !important" }} ></PiCoffeeThin></div>
-                        <strong style={ysabeau.style} className="number" data-number="100">
-                      {visible ?
-                          <CountUp end={10} duration={2} />:0
+                      <strong style={ysabeau.style} className="number" data-number="100">
+                        {visible ?
+                          <CountUp end={10} duration={2} /> : 0
                         }
-                        </strong>
+                      </strong>
                       <span className={josefin.className}>Coffee Branches</span>
                     </div>
                   </div>
@@ -88,11 +92,11 @@ const Home = () => {
                   <div className="block-18 text-center">
                     <div className="text">
                       <div className="icon"><PiCoffeeThin style={{ fontWeight: "400 !important" }} ></PiCoffeeThin></div>
-                        <strong style={ysabeau.style} className="number" data-number="100">
-                      {visible ?
-                          <CountUp end={21} duration={2} />:0
+                      <strong style={ysabeau.style} className="number" data-number="100">
+                        {visible ?
+                          <CountUp end={21} duration={2} /> : 0
                         }
-                        </strong> 
+                      </strong>
                       <span className={josefin.className}>Number of Awards</span>
                     </div>
                   </div>
@@ -101,11 +105,11 @@ const Home = () => {
                   <div className="block-18 text-center">
                     <div className="text">
                       <div className="icon"><PiCoffeeThin style={{ fontWeight: "400 !important" }} ></PiCoffeeThin></div>
-                        <strong style={ysabeau.style} className="number" data-number="100">
-                      {visible ?
-                          <CountUp end={650} duration={2} />:0
+                      <strong style={ysabeau.style} className="number" data-number="100">
+                        {visible ?
+                          <CountUp end={650} duration={2} /> : 0
                         }
-                        </strong>
+                      </strong>
                       <span className={josefin.className}>Happy Customer</span>
                     </div>
                   </div>
@@ -114,11 +118,11 @@ const Home = () => {
                   <div className="block-18 text-center">
                     <div className="text">
                       <div className="icon"><PiCoffeeThin style={{ fontWeight: "400 !important" }} ></PiCoffeeThin></div>
-                        <strong style={ysabeau.style} className="number" data-number="100">
-                      {visible ?
-                          <CountUp end={25} duration={2} />:0
+                      <strong style={ysabeau.style} className="number" data-number="100">
+                        {visible ?
+                          <CountUp end={25} duration={2} /> : 0
                         }
-                        </strong> 
+                      </strong>
                       <span className={josefin.className}>Staff</span>
                     </div>
                   </div>
@@ -151,7 +155,10 @@ const Home = () => {
                     <button style={ysabeau.style} onClick={(e) => {
                       newProduct(e, { foods: { name: item.name, slug: item.slug, category: item.category, image: item.image, price: item.price[0], qty: 1 } });
                     }} className="button btn btn-primary btn-outline-primary">
-                      <span>Add To Cart</span>
+                      <span>
+                        <div className="lds-dual-ring hide"></div>
+                        <div>Add To Cart</div>
+                      </span>
                       <div className="cart">
                         <svg viewBox="0 0 36 26">
                           <polyline
