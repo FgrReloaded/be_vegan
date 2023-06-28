@@ -154,7 +154,7 @@ const Home = () => {
                     <p className="price" style={josefin.style}><span>₹{item.price[0].small}</span></p>
                     <button style={ysabeau.style} onClick={(e) => {
                       newProduct(e, { foods: { name: item.name, slug: item.slug, category: item.category, image: item.image, price: item.price[0], qty: 1 } });
-                    }} className="button btn btn-primary btn-outline-primary">
+                    }} className="button btn btn-primary btn-outline-primary addtocart">
                       <span>
                         <div className="lds-dual-ring hide"></div>
                         <div>Add To Cart</div>
