@@ -14019,7 +14019,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   color: #fff;
   text-align: center;
 }
-@media (min-width: 724px) {
+@media (max-width: 724px) {
   .congrat{
     font-size: 2rem;
   }
