@@ -34,7 +34,7 @@ const Hero = () => {
                             <div className="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
                                 <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }}
                                     transition={{ ease: "easeInOut", duration: 0.4 }} className="col-md-8 col-sm-12 text-center">
-                                    <div style={font_26.style} className="subheading">Welcome</div>
+                                    <div style={font_26.style} className="subheading">BeVegan Welcomes You</div>
                                     <h1 style={josefin.style} className="mb-4 text-uppercase">The Best Coffee Testing Experience</h1>
                                     <p style={josefin.style} className="mb-2 font-weight-light  mb-md-3">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
                                     <p style={ysabeau.style}><Link href={"/food"} className="btn btn-primary p-3 px-xl-4 py-xl-3 border-radius">Order Now</Link></p>
